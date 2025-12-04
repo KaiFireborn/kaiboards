@@ -1,5 +1,4 @@
 ---
-import type { CollectionEntry } from 'astro:content'
 import FormattedDate from '../components/FormattedDate.astro'
 import type { MarkdownHeading, ImageMetadata } from 'astro'
 import TableOfContents from '../components/TableOfContents.astro'
@@ -8,10 +7,16 @@ import utc from 'dayjs/plugin/utc'
 
 dayjs.extend(utc)
 
-type Props = CollectionEntry<'blog'>['data'] & {
+type Props = {
+	title: string
+	description: string
+	pubDate: string | Date
+	updatedDate?: string | Date
+	coverImageCredit?: string
 	headings: MarkdownHeading[]
 	slug: string
 	remarkPluginFrontmatter: Record<string, string>
+	collection?: string
 }
 
 const {
@@ -23,7 +28,11 @@ const {
 	headings,
 	slug,
 	remarkPluginFrontmatter,
+	collection,
 } = Astro.props
+
+const pubDateObj = pubDate ? new Date(pubDate) : undefined
+const updatedDateObj = updatedDate ? new Date(updatedDate) : undefined
 
 import BaseLayout from './BaseLayout.astro'
 import { Image } from 'astro:assets'
@@ -63,7 +72,7 @@ const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
 									name="mdi:calendar-month-outline"
 									class="inline-block text-primary dark:text-primary-dark"
 								/>
-								<FormattedDate date={pubDate} />
+								<FormattedDate date={pubDateObj!} />
 							</span>
 
 							<!-- Updated date -->
@@ -74,7 +83,7 @@ const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
 											name="mdi:calendar-refresh-outline"
 											class="inline-block text-primary dark:text-primary-dark"
 										/>
-										Last updated on <FormattedDate date={updatedDate} />
+										Last updated on <FormattedDate date={updatedDateObj!} />
 									</span>
 								)
 							}
@@ -115,7 +124,7 @@ const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
 					<!-- Suggest edit -->
 					<div class="flex justify-between mt-16 gap-4 flex-wrap italic">
 						<a
-							href={`https://github.com/yashjawale/yashjawale.github.io/edit/main/src/content/blog/${slug}.md`}
+							href={`https://github.com/yashjawale/yashjawale.github.io/edit/main/src/content/${collection ?? 'articles'}/${slug}.md`}
 							target="_blank"
 							rel="noopener noreferrer"
 							class="hover:underline underline-offset-4 opacity-70 hover:opacity-100"

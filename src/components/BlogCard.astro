@@ -6,6 +6,9 @@ import { Image } from 'astro:assets'
 
 const { post } = Astro.props
 
+// Determine the collection route (articles, projects, etc.). Default to articles.
+const routeBase = post.collection ?? 'articles'
+
 const blogImages = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/assets/blogimages/**/*.{jpeg,jpg,png,gif}'
 )
@@ -14,8 +17,8 @@ const coverImagePath = `/src/assets/blogimages/${post.slug}/cover.jpg`
 ---
 
 <a
-	href={`${SITE_BASE}/blog/${post.slug}/`}
-	class="flex flex-col gap-4 pb-8 h-full group transition-colors"
+	href={`${SITE_BASE}/${routeBase}/${post.slug}/`}
+ 	class="flex flex-col gap-4 pb-8 h-full group transition-colors"
 >
 	{
 		blogImages[coverImagePath] && (
