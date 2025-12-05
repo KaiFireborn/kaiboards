@@ -13,20 +13,31 @@ const [articles, projects] = await Promise.all([
 const posts = [...articles, ...projects]
 	.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf())
 	.slice(0, 4)
+
+// Load homepage main article from the `pages` collection
+const pages = await getCollection('pages')
+const homeEntry = pages.find((e) => e.slug === 'home-main-article')
+const HomeContent = homeEntry ? (await homeEntry.render()).Content : null
 ---
 
 <BaseLayout>
 	<main
-		class="app-container flex flex-col gap-12 justify-center py-36 md:py-48 pt-44 md:pt-56 relative"
+		class="app-container flex flex-col gap-6 justify-center py-20 md:py-28 pt-20 md:pt-28 relative"
 	>
 		<div>
-			<p class="block text-3xl opacity-70 mt-9 mb-4">Welcome to</p>
-			<h1 class="text-8xl font-bold leading-none">Saral Theme</h1>
+			<p class="block text-xl opacity-70 mt-4 mb-2">You found yourself on</p>
+			<h1 class="text-6xl font-bold leading-none">Kaiboards</h1>
 		</div>
-		<p class="text-2xl max-w-2xl font-light leading-normal">
-			A simple theme for personal blog sites, created for Astro framework.
+		<p class="text-lg max-w-2xl font-light leading-relaxed">
+			A collection of articles, guides, projects and other thoughts about ergonomic keyboards and layouts as well as other input devices.
 		</p>
-		<div class="flex flex-wrap gap-8">
+
+		{HomeContent && (
+			<div class="prose prose-lg dark:prose-invert w-full max-w-none px-0 mt-6 text-justify leading-relaxed text-lg">
+				<HomeContent />
+			</div>
+		)}
+		<!-- <div class="flex flex-wrap gap-8">
 			{
 				SocialLinks.map((link) => (
 					<a
@@ -38,7 +49,7 @@ const posts = [...articles, ...projects]
 					</a>
 				))
 			}
-		</div>
+		</div> -->
 	</main>
 
 	<!-- Recent Posts Section -->

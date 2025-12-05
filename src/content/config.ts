@@ -21,4 +21,7 @@ const projects = defineCollection({
 	}),
 })
 
-export const collections = { articles, projects }
+// Generic pages collection (for things like the homepage main article)
+const pages = defineCollection({})
+
+export const collections = { articles, projects, pages }
