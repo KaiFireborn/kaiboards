@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+html {
+  background-color: #3d3d2d;
+}
+
+html.orange-theme {
+  background-color: #8b5a2b;
+}
+
 body {
   background-color: #3d3d2d;
   color: #333;
@@ -11,6 +19,10 @@ body {
   font-size: 18px;
   line-height: 1.8;
   min-height: 100vh;
+}
+
+html.orange-theme body {
+  background-color: #8b5a2b;
 }
 
 body > * {
@@ -30,12 +42,20 @@ body.light-background > * {
   padding: 0;
 }
 
+html.orange-theme #navbar-keyboards-placeholder, html.orange-theme #navbar-main-placeholder, html.orange-theme #footer-placeholder {
+  background-color: #8b5a2b;
+}
+
 #navbar, #navbar_keyboards {
   display: flex;
   gap: 2rem;
   padding: 1.5rem 2rem;
   background-color: #3d3d2d;
   margin: 0 auto;
+}
+
+html.orange-theme #navbar, html.orange-theme #navbar_keyboards {
+  background-color: #8b5a2b;
 }
 
 #navbar a, #navbar_keyboards a {
