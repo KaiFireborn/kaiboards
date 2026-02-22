@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" class="light-background">
+  <head>
+    <meta
+      name="description"
+      content="About me and links to projects/articles/websites"
+    />
+    <meta charset="utf-8" />
+    <title>Matrix - KaiFireborn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="KaiFireborn" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  </head>
+  <div id="navbar-main-placeholder"></div>
+  <body>
+    <h1>Hello, World!</h1>
+    <div id="matrix-content"></div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="../js/load-components.js.js"></script>
+    <script src="../js/content-loader.js"></script>
+    <script>
+      function loadMarkdownFile(filePath, containerId) {
+        fetch(filePath)
+          .then((response) => response.text())
+          .then((content) => {
+            const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+            const markdown = match ? match[2] : content;
+            document.getElementById(containerId).innerHTML =
+              marked.parse(markdown);
+          });
+      }
+
+      loadMarkdownFile("../matrix/onboarding.md", "matrix-content");
+    </script>
+  </body>
+</html>

@@ -5,5 +5,6 @@ function loadComponent(id, path) {
 			document.getElementById(id).innerHTML = data;
 		});
 }
-loadComponent('navbar-placeholder', '/components/navbar.html');
+loadComponent('navbar-keyboards-placeholder', '/components/navbar_keyboards.html');
+loadComponent('navbar-main-placeholder', '/components/navbar.html');
 loadComponent('footer-placeholder', '/components/footer.html');
