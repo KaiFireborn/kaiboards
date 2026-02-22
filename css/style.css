@@ -34,10 +34,6 @@ body > * {
   margin-bottom: 1.5rem;
 }
 
-body.light-background > * {
-  background-color: #fdfbf7;
-}
-
 #navbar-keyboards-placeholder, #navbar-main-placeholder, #footer-placeholder {
   background-color: #3d3d2d;
   padding: 0;
@@ -46,6 +42,8 @@ body.light-background > * {
 #footer-placeholder > * {
   background-color: #f9f7f4;
   padding: 1rem;
+  margin-bottom: 1.5rem;
+
 }
 
 

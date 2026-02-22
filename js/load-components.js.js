@@ -1,9 +1,6 @@
 function loadComponent(id, path) {
 	const element = document.getElementById(id);
-	if (!element) {
-		console.error(`Element with id "${id}" not found`);
-		return;
-	}
+	if (!element) return;
 	
 	const currentPath = window.location.pathname;
 	const slashCount = (currentPath.match(/\//g) || []).length;
@@ -15,7 +12,7 @@ function loadComponent(id, path) {
 		.then(data => {
 			element.innerHTML = data;
 		})
-		.catch(err => console.error(`Failed to load ${resolvedPath}:`, err));
+		.catch(err => console.error(`Failed to load ${resolvedPath}`));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
