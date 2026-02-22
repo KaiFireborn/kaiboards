@@ -1,12 +1,12 @@
 function loadComponent(id, path) {
 	// Determine the relative path from current page to components
 	const currentPath = window.location.pathname;
-	// Count slashes to determine depth (e.g., /keyboards/index.html = 2, /keyboards/articles/index.html = 3)
+	// Count slashes to determine depth
+	// /index.html = 1 slash (root, no prefix needed)
+	// /keyboards/index.html = 2 slashes (1 level deep, need ../)
+	// /keyboards/articles/index.html = 3 slashes (2 levels deep, need ../../)
 	const slashCount = (currentPath.match(/\//g) || []).length;
-	// If at root level (1 slash), use relative path directly
-	// If one level deep (2 slashes), use ../
-	// If two levels deep (3 slashes), use ../../
-	const prefix = slashCount > 2 ? '../'.repeat(slashCount - 2) : (slashCount > 1 ? '../' : '');
+	const prefix = slashCount > 1 ? '../'.repeat(slashCount - 1) : '';
 	const resolvedPath = prefix + path;
 	
 	fetch(resolvedPath)
