@@ -9,13 +9,24 @@ async function loadItems(type) {
   if (isArticle) basePath = '/articles/';
   if (isProject) basePath = '/projects/';
   
-  for (const item of items) {
+  const fetchPromises = Array.from(items).map(item => {
     const id = item.getAttribute(`data-${type}`);
-    try {
-      const response = await fetch(`${basePath}content/${id}.md`);
-      const text = await response.text();
-      
-      let title = id;
+    return fetch(`${basePath}content/${id}.md`)
+      .then(response => response.text())
+      .then(text => ({ id, text, item }))
+      .catch(e => {
+        console.warn(`Could not load ${type} ${id}`);
+        return { id, text: '', item };
+      });
+  });
+  
+  const results = await Promise.all(fetchPromises);
+  
+  const singularType = type.slice(0, -1);
+  results.forEach(({ id, text, item }) => {
+    let title = id;
+    
+    if (text) {
       const frontmatterMatch = text.match(/^---\n([\s\S]*?)\n---/);
       if (frontmatterMatch) {
         const titleMatch = frontmatterMatch[1].match(/title:\s*['"]?([^'"]*?)['"]?$/m);
@@ -28,14 +39,16 @@ async function loadItems(type) {
           title = h1Match[1];
         }
       }
-      
-      const singularType = type.slice(0, -1);
-      item.innerHTML = `<a href="${singularType}.html?id=${id}">${title}</a>`;
-    } catch (e) {
-      console.warn(`Could not load ${type} ${id}`);
     }
-  }
+    
+    item.innerHTML = `<a href="${singularType}.html?id=${id}">${title}</a>`;
+  });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.querySelector('[data-articles]')) loadItems('articles');
+  if (document.querySelector('[data-projects]')) loadItems('projects');
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('[data-articles]')) loadItems('articles');
