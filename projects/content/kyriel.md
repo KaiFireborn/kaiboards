@@ -1,11 +1,10 @@
 ---
-title: 'Test Pr'
+title: "Test Pr"
 description: |
   Description
-pubDate: '2025-12-04'
-coverImageCredit: 'Sindy Süßengut, Unsplash'
-tags:
-  - Keyboard
+date: "2025-12-04"
+---
+
 ---
 
 Skibidi

@@ -1,9 +1,8 @@
 ---
-title: 'Why use a tiny keyboard?'
+title: "Why use a tiny keyboard?"
 description: |
   Traditional ~100-key keyboards have some ergonomic/efficiency disadvantages. Counterintuitively, these can be solved by cutting keys away...
-pubDate: '2026-12-09'
-coverImageCredit: ''
+date: "2026-12-09"
 ---
 
 # Why a small keyboard?

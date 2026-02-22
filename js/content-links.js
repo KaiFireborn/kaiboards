@@ -15,8 +15,19 @@ async function loadItems(type) {
       const response = await fetch(`${basePath}content/${id}.md`);
       const text = await response.text();
       
-      const titleMatch = text.match(/^# (.*?)$/m);
-      const title = titleMatch ? titleMatch[1] : id;
+      let title = id;
+      const frontmatterMatch = text.match(/^---\n([\s\S]*?)\n---/);
+      if (frontmatterMatch) {
+        const titleMatch = frontmatterMatch[1].match(/title:\s*['"]?([^'"]*?)['"]?$/m);
+        if (titleMatch) {
+          title = titleMatch[1];
+        }
+      } else {
+        const h1Match = text.match(/^# (.*?)$/m);
+        if (h1Match) {
+          title = h1Match[1];
+        }
+      }
       
       const singularType = type.slice(0, -1);
       item.innerHTML = `<a href="${singularType}.html?id=${id}">${title}</a>`;
