@@ -1,4 +1,3 @@
-// Generic content loader for articles and projects
 function loadContent(contentType, containerId) {
   const params = new URLSearchParams(window.location.search);
   const contentId = params.get('id');
@@ -24,7 +23,6 @@ function loadContent(contentType, containerId) {
       })
       .then(content => {
         if (typeof marked !== 'undefined') {
-          // Parse frontmatter
           let title = '';
           let description = '';
           let pubDate = '';

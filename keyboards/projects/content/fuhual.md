@@ -1,5 +1,5 @@
 ---
-title: "fuhual"
+title: "FuHual"
 description: "This is a placeholder project created automatically."
 date: "2025-12-04"
 ---

@@ -1,3 +1,11 @@
+:root {
+  --color-keyboard-bg: #335110b6;
+  --color-main-bg: #8b592b;
+  --color-light-text: #f9f7f4;
+  --color-dark-text: #333;
+  --color-link: #f5f5dc;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,16 +13,16 @@
 }
 
 html {
-  background-color: #3d3d2d;
+  background-color: var(--color-keyboard-bg);
 }
 
 html.orange-theme {
-  background-color: #8b5a2b;
+  background-color: var(--color-main-bg);
 }
 
 body {
-  background-color: #3d3d2d;
-  color: #333;
+  background-color: var(--color-keyboard-bg);
+  color: var(--color-dark-text);
   font-family: Georgia, serif;
   font-size: 18px;
   line-height: 1.8;
@@ -22,25 +30,25 @@ body {
 }
 
 html.orange-theme body {
-  background-color: #8b5a2b;
+  background-color: var(--color-main-bg);
 }
 
 body > * {
   width: 100%;
   max-width: 700px;
-  background-color: #f9f7f4;
+  background-color: var(--color-light-text);
   padding: 2rem;
   margin: 0 auto;
   margin-bottom: 1.5rem;
 }
 
 #navbar-keyboards-placeholder, #navbar-main-placeholder, #footer-placeholder {
-  background-color: #3d3d2d;
+  background-color: var(--color-keyboard-bg);
   padding: 0;
 }
 
 #footer-placeholder > * {
-  background-color: #f9f7f4;
+  background-color: var(--color-light-text);
   padding: 1rem;
   margin-bottom: 1.5rem;
 
@@ -48,23 +56,23 @@ body > * {
 
 
 html.orange-theme #navbar-keyboards-placeholder, html.orange-theme #navbar-main-placeholder, html.orange-theme #footer-placeholder {
-  background-color: #8b5a2b;
+  background-color: var(--color-main-bg);
 }
 
 #navbar, #navbar_keyboards {
   display: flex;
   gap: 2rem;
   padding: 1.5rem 2rem;
-  background-color: #3d3d2d;
+  background-color: var(--color-keyboard-bg);
   margin: 0 auto;
 }
 
 html.orange-theme #navbar, html.orange-theme #navbar_keyboards {
-  background-color: #8b5a2b;
+  background-color: var(--color-main-bg);
 }
 
 #navbar a, #navbar_keyboards a {
-  color: #f5f5dc;
+  color: var(--color-link);
   text-decoration: none;
 }
 
