@@ -1,0 +1,14 @@
+<div id="list-container">
+  <ul id="list-items"></ul>
+</div>
+
+<script>
+  function renderList(items, linkPattern) {
+    const listItems = document.getElementById("list-items");
+    items.forEach((item) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${linkPattern.replace("{id}", item.id)}">${item.title}</a>`;
+      listItems.appendChild(li);
+    });
+  }
+</script>
