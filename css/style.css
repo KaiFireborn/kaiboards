@@ -85,3 +85,12 @@ h1 {
   margin-bottom: 1.5rem;
   margin-top: 0;
 }
+
+ul, ol {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
